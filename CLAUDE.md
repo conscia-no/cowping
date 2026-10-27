@@ -4,7 +4,7 @@ Guidance for Claude when working in this repository.
 
 ## What this is
 
-`cowping.py` is a single-file terminal tool that pings up to 20 hosts in parallel and shows a live, framed, colour-coded view with a cowsay-style banner and a seven-segment ASCII clock. `hosts.csv` is an example input file.
+`cowping.py` is a single-file terminal tool that pings up to 20 hosts in parallel and shows a live, framed, colour-coded view with a cowsay-style banner and a seven-segment ASCII clock. `hosts.example.csv` is an example input file. `hosts.csv` is the user's local host list and is git-ignored; never commit it.
 
 ## Hard constraints
 
@@ -43,7 +43,7 @@ There is no test suite. Verify manually:
 
 ```bash
 python3 -m py_compile cowping.py
-COLUMNS=90 python3 cowping.py --no-color -c 3 -t 0.5 -f hosts.csv
+COLUMNS=90 python3 cowping.py --no-color -c 3 -t 0.5 -f hosts.example.csv
 python3 cowping.py -c 3 127.0.0.1 10.255.255.1 no.such.host.invalid
 ```
 

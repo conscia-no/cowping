@@ -101,7 +101,7 @@ fw01,10.0.0.254               # name and IP, no group
 - Groups are shown in the order they first appear. Hosts without a group are listed first, under `(no group)` when other groups exist.
 - Duplicate entries are ignored. More than 20 hosts is rejected.
 
-See [`hosts.csv`](hosts.csv) for an example.
+See [`hosts.example.csv`](hosts.example.csv) for an example. Copy it to `hosts.csv` and edit that; `hosts.csv` is in `.gitignore`, so your own host list stays local.
 
 ## Customising
 
