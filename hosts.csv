@@ -1,0 +1,8 @@
+# group,name,ip   (lines starting with # are ignored)
+group,name,ip
+Core,loopback,127.0.0.1
+Core,localhost,localhost
+Core,dead-sw,10.255.255.1
+WAN,google-dns,8.8.8.8
+WAN,typo-host,no.such.host.invalid
+DC,,10.255.255.2
