@@ -1,5 +1,12 @@
 # cowping
 
+## Why?
+
+I had an old perl-script from around 1995 that I consider the OG multiping, used it for two decades, but Perl faded away and Pyton became what the kool kids use. I made a python2 version of this at some stage, but did not have the time to keep it up to date, it worked for my typical lab-use and some maintenance windows for customers. Now Python 3 is faily ubiquitus, so I thought it would be useful to update it.
+
+Since I now have AI coding assistance I took the original idea and here is the (much) improved version!
+
+
 Ping up to 20 hosts in parallel and watch the results live in your terminal, with a cow for moral support.
 
 ```
