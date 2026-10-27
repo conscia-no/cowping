@@ -20,7 +20,7 @@ Last = consecutive lost pings (resets on reply). Rows are green while the host a
 History: '!' = reply, '.' = timeout, '?' = error (e.g. unknown host).
 Press Ctrl+C to stop; a final summary is left on screen.
 
-Copyright (C) 2026 Oyvind
+Copyright (C) 2026 Conscia
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later

@@ -112,6 +112,6 @@ Near the top of the banner section in `cowping.py`:
 
 ## Licence
 
-Copyright (C) 2026 Oyvind
+Copyright (C) 2026 Conscia
 
 cowping is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See [`LICENSE`](LICENSE) for the full text.
