@@ -17,6 +17,10 @@ Guidance for Claude when working in this repository.
 - **Cross-platform.** Linux (iputils and busybox), macOS/BSD and Windows. Ping flags differ per OS (see `build_command`).
 - **No root required.** Use the system `ping` command; never raw ICMP sockets.
 
+## Comments
+
+`cowping.py` is commented for readers with little Python experience. Keep it that way: when you add or change code, add plain-language comments explaining what it does and why, and explain Python idioms that a beginner wouldn't know (slicing, list comprehensions, `with`, locks, ANSI codes). Don't remove existing explanatory comments.
+
 ## Architecture
 
 - `build_command` / `run_command` / `ping_once`: one echo request through the OS `ping`. Returns `("ok", rtt)`, `("timeout", None)` or `("error", msg)`.
