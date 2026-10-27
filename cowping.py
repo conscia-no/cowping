@@ -34,6 +34,7 @@ import argparse
 import math
 import os
 import platform
+import random
 import re
 import subprocess
 import sys
@@ -243,17 +244,66 @@ def fit(text, width):
 # --------------------------------------------------------------------------- #
 # Banner: cow + seven-segment clock
 # --------------------------------------------------------------------------- #
+# The cow opens with PING_IS_LIFE, then says something new every SAYING_EVERY
+# seconds, going through all of SAYINGS in random order before repeating.
+PING_IS_LIFE = "Ping is life"
+SAYINGS = [
+    "It's always DNS",
+    "No pong? Big wrong.",
+    "Moo-ve along, packets",
+    "Udder-ly reachable",
+    "Latency is a state of mind",
+    "ICMP: I Can Moo, Please?",
+    "Echo request, echo regret",
+    "TTL: Time To Lie down",
+    "Every dot is a sad cow",
+    "Ping early, ping often",
+    "Round trip, no souvenirs",
+    "Cows don't drop packets",
+    "Firewalls are just fences",
+    "Packets lost, cow found",
+    "I herd you like packets",
+    "Pong is the best reward",
+    "It worked in the lab",
+    "Did you try rebooting it?",
+    "Ping me maybe",
+    "Grass is green, so is ping",
+]
+SAYING_EVERY = 60
+SAY_W = max(len(s) for s in [PING_IS_LIFE] + SAYINGS)
+
 COW = [
-    r" ______________",
-    r"< Ping is life >",
-    r" --------------",
     r"         \   ^__^",
     r"          \  (oo)\_______",
     r"             (__)\       )\/\ ",
     r"                 ||----w |",
     r"                 ||     ||",
 ]
-COW_W = max(len(l) for l in COW)
+# Wide enough for the longest saying, so the clock never moves.
+COW_W = max([SAY_W + 4] + [len(l) for l in COW])
+
+_saying = {"slot": 0, "text": PING_IS_LIFE, "deck": []}
+
+
+def cow_saying(started):
+    """What the cow says now: PING_IS_LIFE first, then a new saying every minute."""
+    slot = int(now() - started) // SAYING_EVERY
+    if slot != _saying["slot"]:
+        deck = _saying["deck"]
+        if not deck:
+            deck[:] = random.sample(SAYINGS, len(SAYINGS))
+            if deck[-1] == _saying["text"]:
+                deck.insert(0, deck.pop())
+        _saying["slot"] = slot
+        _saying["text"] = deck.pop()
+    return _saying["text"]
+
+
+def cow_lines(text):
+    """Speech bubble with text above the cow."""
+    return [" " + "_" * (len(text) + 2),
+            "< " + text + " >",
+            " " + "-" * (len(text) + 2)] + COW
 
 # Each glyph is three rows of equal width.
 SEGMENT_FONT = {
@@ -282,11 +332,12 @@ def big_text(text):
     return [" ".join(g[row] for g in glyphs) for row in range(3)]
 
 
-def banner_lines(inner):
+def banner_lines(inner, started):
     """
     Return a list of [(text, colour), ...] parts per line: the cow on the left,
     time and date on the right. Stacks them if the window is too narrow.
     """
+    cow = cow_lines(cow_saying(started))
     clock = big_text(time.strftime(CLOCK_FORMAT))
     date = big_text(time.strftime(DATE_FORMAT))
     clock_w = max(len(l) for l in clock + date)
@@ -298,9 +349,9 @@ def banner_lines(inner):
         # Side by side, clock centred in the space to the right of the cow.
         lpad = (inner - COW_W - clock_w) // 2 + COW_W // 4
         lpad = max(gap, min(lpad, inner - COW_W - clock_w))
-        top = (len(COW) - len(clock_block)) // 2 + 1
+        top = (len(cow) - len(clock_block)) // 2 + 1
         lines = []
-        for i, cow_line in enumerate(COW):
+        for i, cow_line in enumerate(cow):
             j = i - top
             right = clock_block[j] if 0 <= j < len(clock_block) else ""
             lines.append([(cow_line.ljust(COW_W), YELLOW),
@@ -309,7 +360,7 @@ def banner_lines(inner):
         return lines
 
     # Narrow window: cow, then clock underneath.
-    return [[(l, YELLOW)] for l in COW] + [[(l, CYAN)] for l in clock_block]
+    return [[(l, YELLOW)] for l in cow] + [[(l, CYAN)] for l in clock_block]
 
 
 def render(targets, painter, timeout, interval, started, final=False):
@@ -358,7 +409,7 @@ def render(targets, painter, timeout, interval, started, final=False):
 
     lines = [rule(box["tl"], box["tr"])]
     if painter.banner:
-        lines.extend(framed_parts(parts) for parts in banner_lines(inner))
+        lines.extend(framed_parts(parts) for parts in banner_lines(inner, started))
         lines.append(rule(box["lt"], box["rt"]))
     lines += [framed(title, BOLD),
              rule(box["lt"], box["rt"]),

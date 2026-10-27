@@ -45,6 +45,7 @@ Rows are **green** while a host answers and **red** when it doesn't.
 - **Lost** = total lost pings, **Last** = consecutive lost pings (resets on a reply)
 - Cisco-style history (`!` reply, `.` timeout, `?` error) that fills the full terminal width and grows when you widen the window
 - Live clock and date in seven-segment ASCII, plus the cow
+- The cow opens with "Ping is life", then says something new about ping every minute
 - Configurable timeout (default 1 s), interval and count
 - No dependencies: Python 3 standard library only
 - Linux, macOS/BSD and Windows
@@ -108,6 +109,7 @@ Near the top of the banner section in `cowping.py`:
 
 - `DATE_FORMAT` / `CLOCK_FORMAT`: `strftime` formats for the big clock (default `%d.%m.%Y` and `%H:%M:%S`)
 - `COW`: the ASCII art
+- `SAYINGS` / `SAYING_EVERY`: what the cow says after "Ping is life", and how often it changes (default 60 seconds)
 - `MAX_TARGETS`, `HISTORY_MAX`, `REFRESH`: limits and redraw rate
 
 ## Licence

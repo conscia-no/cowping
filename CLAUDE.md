@@ -34,7 +34,7 @@ Guidance for Claude when working in this repository.
 - History takes all remaining terminal width. No error text at the end of rows.
 - The whole row is green on the last reply, red on timeout or error, and uncoloured before the first result.
 - Groups are shown with a labelled divider in order of first appearance. Ungrouped hosts go first.
-- Banner: the cow says "Ping is life". Date format is `dd.mm.yyyy`. `--no-banner` hides it.
+- Banner: the cow says "Ping is life" for the first minute, then a new random line from `SAYINGS` every minute (all 20 before any repeats). Date format is `dd.mm.yyyy`. `--no-banner` hides it.
 - Box-drawing frame, with an automatic ASCII fallback when the terminal encoding can't show it.
 
 ## Testing
