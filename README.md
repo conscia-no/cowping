@@ -4,9 +4,9 @@
 
 I had an old perl-script from around 1995 that I consider the OG multiping, used it for two decades, but Perl kinda faded away and Pyton became what the kool kidz use. So I made a python2 version of this at some stage, but did not have the time to keep it up to date while it worked fine for my typical lab-use and some maintenance windows for customers. 
 
-Now Python 3 is nearly ubiquitus, so I thought it would be useful to update it for python3 and add some features.
+These days Python3 is nearly always available, so I thought it would be useful to update it for python3 and add some features. The script have no external requirements, and should work on any system with python installed.
 
-With some AI coding assistance I improved on the original script, and here is the (much) improved version, with more cow-ness and available for all!
+With some AI coding assistance I improved on the original script, and here is the (much) improved version, with even more cowness and now available for all!
 
 The script can ping up to 20 hosts in parallel and you watch the results live in your terminal, with a cow for moral support and live commentary.
 
