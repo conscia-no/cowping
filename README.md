@@ -2,12 +2,13 @@
 
 ## Why?
 
-I had an old perl-script from around 1995 that I consider the OG multiping, used it for two decades, but Perl faded away and Pyton became what the kool kids use. I made a python2 version of this at some stage, but did not have the time to keep it up to date, it worked for my typical lab-use and some maintenance windows for customers. Now Python 3 is faily ubiquitus, so I thought it would be useful to update it.
+I had an old perl-script from around 1995 that I consider the OG multiping, used it for two decades, but Perl kinda faded away and Pyton became what the kool kidz use. So I made a python2 version of this at some stage, but did not have the time to keep it up to date while it worked fine for my typical lab-use and some maintenance windows for customers. 
 
-Since I now have AI coding assistance I took the original idea and here is the (much) improved version!
+Now Python 3 is nearly ubiquitus, so I thought it would be useful to update it for python3 and add some features.
 
+With some AI coding assistance I improved on the original script, and here is the (much) improved version, with more cow-ness and available for all!
 
-Ping up to 20 hosts in parallel and watch the results live in your terminal, with a cow for moral support.
+The script can ping up to 20 hosts in parallel and you watch the results live in your terminal, with a cow for moral support and live commentary.
 
 ```
 ┌───────────────────────────────────────────────────────────────────────────────┐
@@ -108,3 +109,9 @@ Near the top of the banner section in `cowping.py`:
 - `DATE_FORMAT` / `CLOCK_FORMAT`: `strftime` formats for the big clock (default `%d.%m.%Y` and `%H:%M:%S`)
 - `COW`: the ASCII art
 - `MAX_TARGETS`, `HISTORY_MAX`, `REFRESH`: limits and redraw rate
+
+## Licence
+
+Copyright (C) 2026 Oyvind
+
+cowping is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See [`LICENSE`](LICENSE) for the full text.
